@@ -6,7 +6,7 @@ const testHtml =
 test("parser delivers parsed html with user defined tag replacements and whitelisting", () => {
   const parsed = createParser({
     whitelistTags: {
-      br: true,
+      br: { skipClosing: true },
       a: {
         attributes: {},
         tagName: "h1",
@@ -30,7 +30,8 @@ test("parser delivers parsed html with user defined tag replacements and whiteli
       },
     },
   }).parse(testHtml);
-  expect(parsed).toMatch("<br ></br>");
+  console.log(parsed);
+  expect(parsed).toMatch("<br >");
   expect(parsed).not.toMatch("href=");
   expect(parsed).not.toMatch("strong");
   expect(parsed).toMatch("<h1 >link to google </h1>");

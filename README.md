@@ -29,7 +29,8 @@ import createParser from "@subparry/selective-html-parser";
 ```javascript
 const parser = createParser({
   whitelistTags: {
-    br: true, // Allow all br tags
+    h1: true, // Allow all h1 tags
+    br: {skipClosing: true}, // Allow all br tags but skip closing tag
     // Allow anchor tags but with the following modifications
     a: {
       attributes: {}, // No attributes allowed
