@@ -1,0 +1,23 @@
+{
+  "name": "@subparry/selective-html-parser",
+  "version": "1.0.0",
+  "description": "An HTML parser with filtering capabilities",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "html",
+    "parser",
+    "filter",
+    "node"
+  ],
+  "author": "Adrian Parry Ainardi",
+  "license": "ISC",
+  "dependencies": {
+    "htmlparser2": "^6.0.0"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
