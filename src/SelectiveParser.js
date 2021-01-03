@@ -45,7 +45,7 @@ function createParser(options) {
                   newAttribs[k] = tagSpecs.attributes[k];
                   break;
                 case "function":
-                  newAttribs[k] = tagSpecs.attributes[k](attributes[k]);
+                  newAttribs[k] = tagSpecs.attributes[k](attributes);
                   break;
                 default:
                   break;
