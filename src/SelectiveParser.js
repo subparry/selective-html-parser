@@ -3,7 +3,7 @@ const HtmlAssembler = require("./HtmlAssembler");
 
 // const sampleOptions = {
 //   whitelistTags: {
-//     br: true,
+//     br: {skipClosing: true},
 //     h1: true,
 //     h2: true,
 //     h3: true,
@@ -82,6 +82,7 @@ function createParser(options) {
         if (typeof tagSpecs == "boolean") {
           assembler.addClosingTag(name);
         } else if (typeof tagSpecs == "object") {
+          if (tagSpecs.skipClosing) return;
           let newName = "";
           if (tagSpecs.tagName) {
             newName = tagSpecs.tagName;
