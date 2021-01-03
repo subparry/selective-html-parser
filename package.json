@@ -1,6 +1,6 @@
 {
   "name": "@subparry/selective-html-parser",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "An HTML parser with filtering capabilities",
   "main": "src/index.js",
   "scripts": {
