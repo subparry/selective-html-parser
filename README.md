@@ -10,6 +10,10 @@ It supports whitelist and blacklist approaches. I recommend whitelist approach f
 
 Also, whitelist options are far richer allowing tagName swap, attribute whitelisting, attribute value modification and adding default attributes
 
+## Live demo
+
+[Interactive demo here](https://selective-html-parser-demo.herokuapp.com/)
+
 ## Usage
 
 - CommonJS
