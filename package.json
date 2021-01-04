@@ -12,7 +12,14 @@
     "filter",
     "node"
   ],
-  "author": "Adrian Parry Ainardi",
+  "author": "Adrian Parry Ainardi <subparry@gmail.com> (https://github.com/subparry/)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/subparry/selective-html-parser"
+  },
+  "bugs": {
+    "url": "https://github.com/subparry/selective-html-parser/issues"
+  },
   "license": "ISC",
   "dependencies": {
     "htmlparser2": "^6.0.0"
