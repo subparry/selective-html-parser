@@ -1,9 +1,9 @@
-const htmlparser2 = require("htmlparser2");
-const HtmlAssembler = require("./HtmlAssembler");
+const htmlparser2 = require('htmlparser2')
+const HtmlAssembler = require('./HtmlAssembler')
 
 // const sampleOptions = {
 //   whitelistTags: {
-//     br: {skipClosing: true},
+//     br: { skipClosing: true },
 //     h1: true,
 //     h2: true,
 //     h3: true,
@@ -11,102 +11,102 @@ const HtmlAssembler = require("./HtmlAssembler");
 //     a: {
 //       attributes: {
 //         href: true,
-//         rel: "noreferrer",
-//         target: "_blank",
+//         rel: 'noreferrer',
+//         target: '_blank',
 //       },
-//       tagName: "h1",
+//       tagName: 'h1',
 //     },
 //   },
-// Blacklist tags included only for demonstration. If you include both whitelist and blacklist, whitelist takes precedence and blacklist is ignored
-//   blacklistTags: ["a", "script", "img"],
-// };
+//   // Blacklist tags included only for demonstration. If you include both whitelist and blacklist, whitelist takes precedence and blacklist is ignored
+//   blacklistTags: ['a', 'script', 'img'],
+// }
 
 function createParser(options) {
-  const assembler = new HtmlAssembler();
+  const assembler = new HtmlAssembler()
   const parser = new htmlparser2.Parser({
     onopentag(name, attributes) {
       if (options.whitelistTags) {
-        const tagSpecs = options.whitelistTags[name];
-        if (!tagSpecs) return;
+        const tagSpecs = options.whitelistTags[name]
+        if (!tagSpecs) return
 
-        if (typeof tagSpecs == "boolean") {
-          assembler.addOpenTag(name, attributes);
-        } else if (typeof tagSpecs == "object") {
-          let newAttribs = {};
+        if (typeof tagSpecs === 'boolean') {
+          assembler.addOpenTag(name, attributes)
+        } else if (typeof tagSpecs === 'object') {
+          let newAttribs = {}
 
           if (tagSpecs.attributes) {
             Object.keys(tagSpecs.attributes).forEach((k) => {
               switch (typeof tagSpecs.attributes[k]) {
-                case "boolean": {
-                  newAttribs[k] = attributes[k];
-                  break;
+                case 'boolean': {
+                  newAttribs[k] = attributes[k]
+                  break
                 }
-                case "string":
-                  newAttribs[k] = tagSpecs.attributes[k];
-                  break;
-                case "function":
-                  newAttribs[k] = tagSpecs.attributes[k](attributes);
-                  break;
+                case 'string':
+                  newAttribs[k] = tagSpecs.attributes[k]
+                  break
+                case 'function':
+                  newAttribs[k] = tagSpecs.attributes[k](attributes)
+                  break
                 default:
-                  break;
+                  break
               }
-            });
+            })
           } else {
-            newAttribs = attributes;
+            newAttribs = attributes
           }
 
-          let newName = "";
+          let newName = ''
           if (tagSpecs.tagName) {
-            newName = tagSpecs.tagName;
+            newName = tagSpecs.tagName
           } else {
-            newName = name;
+            newName = name
           }
-          assembler.addOpenTag(newName, newAttribs);
+          assembler.addOpenTag(newName, newAttribs)
         }
       } else if (options.blacklistTags) {
-        if (options.blacklistTags.includes(name)) return;
-        assembler.addOpenTag(name, attributes);
+        if (options.blacklistTags.includes(name)) return
+        assembler.addOpenTag(name, attributes)
       } else {
         throw new Error(
-          "You must specify whitelistTags OR blacklistTags. If you specify both, whitelistTags will take precedency and blacklistTags will be silently omitted"
-        );
+          'You must specify whitelistTags OR blacklistTags. If you specify both, whitelistTags will take precedency and blacklistTags will be silently omitted'
+        )
       }
     },
     ontext(text) {
-      assembler.addText(text);
+      assembler.addText(text)
     },
     onclosetag(name) {
       if (options.whitelistTags) {
-        const tagSpecs = options.whitelistTags[name];
-        if (!tagSpecs) return;
-        if (typeof tagSpecs == "boolean") {
-          assembler.addClosingTag(name);
-        } else if (typeof tagSpecs == "object") {
-          if (tagSpecs.skipClosing) return;
-          let newName = "";
+        const tagSpecs = options.whitelistTags[name]
+        if (!tagSpecs) return
+        if (typeof tagSpecs === 'boolean') {
+          assembler.addClosingTag(name)
+        } else if (typeof tagSpecs === 'object') {
+          if (tagSpecs.skipClosing) return
+          let newName = ''
           if (tagSpecs.tagName) {
-            newName = tagSpecs.tagName;
+            newName = tagSpecs.tagName
           } else {
-            newName = name;
+            newName = name
           }
-          assembler.addClosingTag(newName);
+          assembler.addClosingTag(newName)
         }
       } else if (options.blacklistTags) {
-        if (options.blacklistTags.includes(name)) return;
-        assembler.addClosingTag(name);
+        if (options.blacklistTags.includes(name)) return
+        assembler.addClosingTag(name)
       }
     },
-  });
+  })
 
   return {
     parse(html) {
-      parser.write(html);
-      parser.end();
-      const parsed = assembler.assemble();
-      assembler.clear();
-      return parsed;
+      parser.write(html)
+      parser.end()
+      const parsed = assembler.assemble()
+      assembler.clear()
+      return parsed
     },
-  };
+  }
 }
 
-module.exports = createParser;
+module.exports = createParser
