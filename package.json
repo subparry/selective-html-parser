@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/subparry/selective-html-parser/issues"
   },
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "htmlparser2": "^6.0.0"
   },

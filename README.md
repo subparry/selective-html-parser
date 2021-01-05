@@ -2,7 +2,7 @@
 
 ## Description
 
-A simple wrapper over `htmlparser2` that allows to parse and filter out HTML strings from untrusted sources.
+A simple wrapper over [htmlparser2](https://github.com/fb55/htmlparser2) that allows to parse and filter out HTML strings from untrusted sources.
 
 ## Features
 
