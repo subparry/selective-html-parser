@@ -1,3 +1,3 @@
-const createParser = require("./SelectiveParser");
+const createParser = require('./SelectiveParser')
 
-module.exports = createParser;
+module.exports = createParser

@@ -19,13 +19,13 @@ Also, whitelist options are far richer allowing tagName swap, attribute whitelis
 - CommonJS
 
 ```javascript
-const createParser = require("@subparry/selective-html-parser");
+const createParser = require('@subparry/selective-html-parser')
 ```
 
 - ES6 imports
 
 ```javascript
-import createParser from "@subparry/selective-html-parser";
+import createParser from '@subparry/selective-html-parser'
 ```
 
 - Whitelist approach

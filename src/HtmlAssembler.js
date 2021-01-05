@@ -1,63 +1,63 @@
 class HtmlAssembler {
   constructor() {
-    this.result = [];
+    this.result = []
   }
 
   addText(text) {
     this.result.push({
-      type: "text",
+      type: 'text',
       content: text,
-    });
+    })
   }
 
   addOpenTag(name, attrs) {
     this.result.push({
-      type: "openTag",
+      type: 'openTag',
       name,
       attrs,
-    });
+    })
   }
 
   addClosingTag(name) {
     this.result.push({
-      type: "closingTag",
+      type: 'closingTag',
       name,
-    });
+    })
   }
 
   getCurrentRepresentation() {
-    return this.result;
+    return this.result
   }
 
   openTagAssemble(tagData) {
-    const attrs = Object.keys(tagData.attrs);
+    const attrs = Object.keys(tagData.attrs)
     return `<${tagData.name} ${attrs
       .map((k) => {
-        const quotationMark = tagData.attrs[k].includes('"') ? "'" : '"';
-        return `${k}=${quotationMark}${tagData.attrs[k]}${quotationMark}`;
+        const quotationMark = tagData.attrs[k].includes('"') ? "'" : '"'
+        return `${k}=${quotationMark}${tagData.attrs[k]}${quotationMark}`
       })
-      .join(" ")}>`;
+      .join(' ')}>`
   }
 
   closingTagAssemble(tagData) {
-    return `</${tagData.name}>`;
+    return `</${tagData.name}>`
   }
 
   textAssemble(tagData) {
-    return tagData.content;
+    return tagData.content
   }
 
   assemble() {
     return this.result
       .map((tagData) => {
-        return this[tagData.type + "Assemble"](tagData);
+        return this[tagData.type + 'Assemble'](tagData)
       })
-      .join("");
+      .join('')
   }
 
   clear() {
-    this.result = [];
+    this.result = []
   }
 }
 
-module.exports = HtmlAssembler;
+module.exports = HtmlAssembler
