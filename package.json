@@ -12,6 +12,9 @@
     "filter",
     "node"
   ],
+  "files": [
+    "src/*"
+  ],
   "author": "Adrian Parry Ainardi <subparry@gmail.com> (https://github.com/subparry/)",
   "repository": {
     "type": "git",
